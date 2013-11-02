@@ -1,0 +1,22 @@
+{
+  "name": "photoalbum",
+  "version": "0.0.0",
+  "description": "Session manager for journeyman with redis",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*"
+  },
+  "keywords": [
+    "session",
+    "redis",
+    "journeyman"
+  ],
+  "author": "Brandon Farmer",
+  "license": "BSD",
+  "devDependencies": {
+    "tape": "~2.1.0"
+  },
+  "dependencies": {
+    "runner5": "0.0.6"
+  }
+}
