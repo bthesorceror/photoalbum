@@ -17,6 +17,8 @@
     "tape": "~2.1.0"
   },
   "dependencies": {
-    "runner5": "0.0.6"
+    "runner5": "0.0.6",
+    "cookies": "~0.3.6",
+    "uuid": "~1.4.1"
   }
 }
