@@ -4,7 +4,7 @@
   "description": "Session manager for journeyman with redis",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/* && echo '\nFeatures:\n' && ./node_modules/.bin/cucumber.js"
+    "test": "./node_modules/.bin/tape test/* && echo '\nFeatures:\n' && ./node_modules/.bin/cucumber.js"
   },
   "keywords": [
     "session",
