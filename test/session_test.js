@@ -15,6 +15,22 @@ tape('fetch by session id', function(t) {
   session.get();
 });
 
+tape('fetch by session id with namespace', function(t) {
+  t.plan(1);
+
+  var client = {
+    get: function(id) {
+      t.equal(id, 'namemyspace::boom!');
+    }
+  }
+
+  var session =new Session('boom!', 20, client, {
+    namespace: 'namemyspace'
+  });
+
+  session.get();
+});
+
 tape('parses resulting json', function(t) {
   t.plan(1);
 
@@ -80,6 +96,26 @@ tape('saves with the correct parameters', function(t) {
   }
 
   var session =new Session('boom!', 20, client);
+
+  session.save(stored);
+});
+
+tape('saves with the correct namespace', function(t) {
+  t.plan(3);
+
+  var stored = {name: 'brandon', value: 'boom!'};
+
+  var client = {
+    setex: function(key, ttl, val) {
+      t.equal(key, 'namemyspace::boom!')
+      t.equal(ttl, 20);
+      t.equal(val, JSON.stringify(stored));
+    }
+  }
+
+  var session =new Session('boom!', 20, client, {
+    namespace: 'namemyspace'
+  });
 
   session.save(stored);
 });

@@ -25,3 +25,15 @@ journeyman.use((new PhotoAlbum(time_to_live_in_seconds, redis_host, redis_port))
 
 Session is a object that you can set keys on and is saved at the end of the
 response.
+
+## Namespacing
+
+```javascript
+
+var album = new PhotoAlbum(time_to_live_in_seconds, redis_host, redis_port, {
+  namespace: 'namemyspace'
+});
+
+```
+
+This is prefix session keys with 'namemyspace::'. However this will only happen internally and is not written to the cookies.

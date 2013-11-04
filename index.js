@@ -20,7 +20,7 @@ PhotoAlbum.prototype._client = function() {
 }
 
 PhotoAlbum.prototype.buildSession = function(req, res) {
-  return new Session(this._cookieMonster().getSessionId(req, res), this.ttl, this._client());
+  return new Session(this._cookieMonster().getSessionId(req, res), this.ttl, this._client(), this.options);
 }
 
 PhotoAlbum.prototype.middleware = function() {
