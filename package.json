@@ -6,6 +6,10 @@
   "scripts": {
     "test": "./node_modules/.bin/tape test/* && echo '\nFeatures:\n' && ./node_modules/.bin/cucumber.js"
   },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bthesorceror/photoalbum.git"
+  },
   "keywords": [
     "session",
     "redis",
