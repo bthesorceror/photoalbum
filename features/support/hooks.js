@@ -7,6 +7,7 @@ module.exports = function() {
   this.Around(function(runScenario) {
 
     var journeyman = new Journeyman(9090);
+    var client = redis.createClient(6379, 'localhost');
     journeyman.listen();
 
     journeyman.use(function(req, res, next) {
@@ -24,8 +25,10 @@ module.exports = function() {
     journeyman.use((new PhotoAlbum(100, 'localhost', 6379)).middleware());
 
     runScenario(function(callback) {
-      journeyman.close();
-      callback();
+      client.flushall(function(err) {
+        journeyman.close();
+        callback();
+      });
     });
   });
 };
