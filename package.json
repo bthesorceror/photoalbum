@@ -1,6 +1,6 @@
 {
   "name": "photoalbum",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Session manager for journeyman with redis",
   "main": "index.js",
   "scripts": {
