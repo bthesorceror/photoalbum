@@ -4,7 +4,7 @@
   "description": "Session manager for journeyman with redis",
   "main": "index.js",
   "scripts": {
-    "test": "tap test/*"
+    "test": "tap test/* && echo '\nFeatures:\n' && ./node_modules/.bin/cucumber.js"
   },
   "keywords": [
     "session",
@@ -14,7 +14,10 @@
   "author": "Brandon Farmer",
   "license": "BSD",
   "devDependencies": {
-    "tape": "~2.1.0"
+    "tape": "~2.1.0",
+    "journeyman": "0.0.9",
+    "cucumber": "~0.3.1",
+    "zombie": "~2.0.0-alpha24"
   },
   "dependencies": {
     "runner5": "0.0.6",

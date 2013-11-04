@@ -10,13 +10,13 @@ function PhotoAlbum(ttl, host, port, options) {
 }
 
 PhotoAlbum.prototype._cookieMonster = function() {
-  this._cookieMonster = this._cookieMonster || new CookieMonster(option['session_key'] || 'session_id');
-  return this._cookieMonster;
+  this.__cookieMonster = this.__cookieMonster || new CookieMonster(this.options.session_key || 'session_id');
+  return this.__cookieMonster;
 }
 
 PhotoAlbum.prototype._client = function() {
-  this._client = this._client || (require('redis')).createClient(this.port, this.host, this.options);
-  return this._client;
+  this.__client = this.__client || (require('redis')).createClient(this.port, this.host, this.options);
+  return this.__client;
 }
 
 PhotoAlbum.prototype.buildSession = function(req, res) {
@@ -34,7 +34,7 @@ PhotoAlbum.prototype.middleware = function() {
 
     runner.on('success', function(mySession) {
       req.session = mySession;
-      res.on('finish', session.save.bind(session, req.session));
+      res.on('finish', function() { session.save(req.session) });
       next();
     });
 
