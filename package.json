@@ -18,9 +18,9 @@
   "author": "Brandon Farmer",
   "license": "BSD",
   "devDependencies": {
-    "tape": "~2.1.0",
-    "journeyman": "0.0.9",
     "cucumber": "~0.3.1",
+    "stack": "^0.1.0",
+    "tape": "~2.1.0",
     "zombie": "~2.0.0-alpha24"
   },
   "dependencies": {

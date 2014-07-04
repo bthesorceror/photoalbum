@@ -1,6 +1,6 @@
 # Photo Album
 
-Session manager for Journey that uses Redis for storage.
+Session manager for connect and stack that uses Redis for storage.
 
 ```javascript
 
@@ -8,17 +8,24 @@ var redis_host = 'localhost';
 var redis_port = 6397;
 var time_to_live_in_seconds = 1000;
 
-var Journeyman = require('journeyman');
+var http  = require('http');
+var stack = require('stack');
+
 var PhotoAlbum = require('photoalbum');
 
-var journeyman = new Journeyman(4000);
-
-journeyman.use(function(req, res, next) {
+var first = (new PhotoAlbum(time_to_live_in_seconds, redis_host, redis_port)).middleware();
+var second = function(req, res, next) {
   // can access session through req.session
-});
+};
 
-journeyman.use((new PhotoAlbum(time_to_live_in_seconds, redis_host, redis_port)).middleware());
+var server = http.createServer(
+    stack(
+      first,
+      second
+    )
+);
 
+server.listen(4000);
 ```
 
 ## Notes

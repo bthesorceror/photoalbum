@@ -3,18 +3,13 @@ var PhotoAlbum   = require('../index');
 var EventEmitter = require('events').EventEmitter;
 
 tape("handles error correctly", function(t) {
-  t.plan(4);
+  t.plan(1);
 
   var res = "response", req = "request";
 
-  var server = {
-    handleError: function(request, response, err) {
-      t.equal(this, server);
-      t.equal(request, req);
-      t.equal(response, res);
-      t.equal(err, "Failure with your session");
-    }
-  };
+  var next = function(err) {
+    t.equal(err, "Failure with your session");
+  }
 
   var session = {
     get: function(cb) {
@@ -29,7 +24,7 @@ tape("handles error correctly", function(t) {
     return session;
   }
 
-  middleware.call(server, req, res);
+  middleware(req, res, next);
 });
 
 tape("sets session correctly", function(t) {

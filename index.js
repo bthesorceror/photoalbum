@@ -30,7 +30,9 @@ PhotoAlbum.prototype.middleware = function() {
 
     var runner = new Runner5(session, session.get);
 
-    runner.on('failure', this.handleError.bind(this, req, res, "Failure with your session"));
+    runner.on('failure', function() {
+      next("Failure with your session");
+    });
 
     runner.on('success', function(mySession) {
       req.session = mySession;
